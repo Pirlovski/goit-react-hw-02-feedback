@@ -1,31 +1,27 @@
-import React   from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-const Statistics = ({good, neutral, bad, total, positivePercentage}) => (
-  
+import shortid from 'shortid';
 
-  <div className="Statistics" >
-  <p>Good: {good}</p>
-  <p>Neutral: {neutral}</p>
-  <p>Bad: {bad}</p>
-  <p>Total: {total}</p>
-  <p> positivePercentage: { positivePercentage}%</p>
-  </div>
-
-
-    
- )
- 
- Statistics.propTypes = {
-	good: PropTypes.number.isRequired,
-	neutral: PropTypes.number.isRequired,
-	bad: PropTypes.number.isRequired,
-	total: PropTypes.number.isRequired,
-	positivePercentage: PropTypes.number.isRequired
+const Statistics = ({ arrays, total, positivePercentage }) => {
+  return (
+    <>
+      <div className="Statistics">
+        {arrays.map(array => (
+          <p key={shortid.generate()}>
+            {array[0]} : {array[1]}
+          </p>
+        ))}
+        <p>Total: {total}</p>
+        <p> positivePercentage: {positivePercentage}%</p>
+      </div>
+    </>
+  );
 };
 
+Statistics.propTypes = {
+  arrays: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+};
 
-export default Statistics ;
-
-
-
-
+export default Statistics;

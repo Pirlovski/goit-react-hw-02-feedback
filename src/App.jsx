@@ -45,39 +45,27 @@ this.setState((prevState) => ({
 
 render(){
 
-  const {good , neutral , bad} = this.state ;
   const total = this.countTotalFeedback() ;
   const positivePercentage = this.countPositiveFeedbackPercentage() ;
   const objKey = Object.keys(this.state);
-   return (
-
-  <>
-
-
- 
-  <Container>
-<Section title="Please leave feedback">
-<FeedbackOptions options={objKey} onLeaveFeedback={this.onLeaveFeedback} />
-
-
-</Section>
- {total === 0 ? 
-(<Notification message="No feedback given" />) : (
- <Section title="Statistics">
-  <Statistics
-  good = {good} 
-  neutral = {neutral} 
-  bad = {bad} 
-  total = {total }
+  const objArr =   Object.entries(this.state);
   
-  positivePercentage  = {positivePercentage}
- />
-</Section>
+  
+   return (
+   <>
+<Container>
+<Section title="Please leave feedback">
+<FeedbackOptions 
+options={objKey} 
+onLeaveFeedback={this.onLeaveFeedback} 
+/></Section>
 
-
- )}
- </Container>
-</>
+ {total === 0 ? (<Notification message="No feedback given" />) : (
+ <Section title="Statistics">
+  <Statistics 
+  total = {total } positivePercentage  = {positivePercentage}   arrays={objArr}/>
+ </Section>)}
+ </Container></>
 
 
  )} ;
